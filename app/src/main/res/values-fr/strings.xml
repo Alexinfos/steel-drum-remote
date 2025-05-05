@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="title_activity_main">Accueil</string>
     <string name="connect_to_device">Se connecter au contrôleur</string>
     <string name="title_activity_device_select">Sélectionner un appareil</string>
     <string name="loading">Chargement...</string>
