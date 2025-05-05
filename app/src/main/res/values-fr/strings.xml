@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="connect_to_device">Se connecter au contrôleur</string>
+    <string name="title_activity_device_select">Sélectionner un appareil</string>
+    <string name="loading">Chargement...</string>
+    <string name="scan_in_progress">Recherche d\'appareils...</string>
+    <string name="title_activity_remote">Télécommande</string>
+</resources>
