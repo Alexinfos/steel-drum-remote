@@ -68,7 +68,7 @@ class DeviceSelectActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        super.onPause()
+        super.onResume()
         BluetoothDiscoveryService.startDiscovery(this) { device -> onDeviceDiscovered(device) }
     }
 
@@ -99,11 +99,6 @@ class DeviceSelectActivity : AppCompatActivity() {
             holder.itemView.setOnClickListener {
                 callback?.startRemoteActivity(devices[position])
             }
-        }
-
-        fun addDevice(newDevice: BluetoothDevice) {
-            devices.add(newDevice)
-            notifyItemInserted(devices.size - 1)
         }
 
         override fun getItemCount() = devices.size

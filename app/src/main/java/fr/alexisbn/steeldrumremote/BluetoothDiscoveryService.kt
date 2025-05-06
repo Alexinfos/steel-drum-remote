@@ -8,9 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
-import android.os.ParcelUuid
 import android.util.Log
-import java.util.UUID
 
 object BluetoothDiscoveryService {
 
@@ -53,49 +51,6 @@ object BluetoothDiscoveryService {
                 }
                 device?.let { discoveryCallback?.invoke(it) }
             }
-        }
-    }
-
-    fun fetchDeviceUuids(
-        context: Context,
-        device: BluetoothDevice,
-        onUuidsFetched: (List<UUID>) -> Unit,
-        onError: (Exception) -> Unit
-    ) {
-        val filter = IntentFilter(BluetoothDevice.ACTION_UUID)
-
-        val receiver = object : BroadcastReceiver() {
-            override fun onReceive(ctx: Context?, intent: Intent?) {
-                context.unregisterReceiver(this)
-
-                val action = intent?.action
-                if (action == BluetoothDevice.ACTION_UUID) {
-                    val uuidArray = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID, ParcelUuid::class.java)
-                    } else {
-                        intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID)
-                    }
-
-                    if (!uuidArray.isNullOrEmpty()) {
-                        val uuids = uuidArray.mapNotNull { (it as? ParcelUuid)?.uuid }
-                        onUuidsFetched(uuids)
-                    } else {
-                        onError(Exception("No UUID found for device"))
-                    }
-                }
-            }
-        }
-
-        try {
-            context.registerReceiver(receiver, filter)
-            val success = device.fetchUuidsWithSdp()
-            if (!success) {
-                context.unregisterReceiver(receiver)
-                onError(Exception("fetchUuidsWithSdp failed"))
-            }
-        } catch (e: Exception) {
-            context.unregisterReceiver(receiver)
-            onError(e)
         }
     }
 }

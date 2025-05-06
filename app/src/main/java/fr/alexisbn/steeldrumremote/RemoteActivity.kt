@@ -69,9 +69,7 @@ class RemoteActivity : AppCompatActivity() {
 
     private fun onBluetoothConnectionEstablished() {
         Log.d(TAG, "Bluetooth connection established!")
-        bluetoothService.sendCommand("TEST1\n")
-        bluetoothService.sendCommand("TEST2\n")
-        bluetoothService.sendCommand("TEST3\n")
+        bluetoothService.sendCommand("hello\n")
     }
 
     private fun onBluetoothConnectionFailed() {
