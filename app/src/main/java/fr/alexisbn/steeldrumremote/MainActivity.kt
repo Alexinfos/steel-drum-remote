@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
         binding.connectButton.setOnClickListener {
             if (hasAllBluetoothPermissions(this@MainActivity)) {
@@ -36,6 +37,13 @@ class MainActivity : AppCompatActivity() {
                     1038
                 )
             }
+        }
+
+        binding.settingsButton.setOnClickListener {
+            val intent = Intent(this@MainActivity, SettingsActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            startActivity(intent)
         }
     }
 

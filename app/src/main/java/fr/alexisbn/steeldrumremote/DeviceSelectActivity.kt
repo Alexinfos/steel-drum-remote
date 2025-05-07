@@ -55,7 +55,7 @@ class DeviceSelectActivity : AppCompatActivity() {
 
     private fun onDeviceDiscovered(device: BluetoothDevice) {
         Log.d("DISCOVERY", "Found : ${device.name} - ${device.address}")
-        if (results.none { it.address == device.address }) {
+        if (results.none { it.address == device.address } && device.name != null) {
             results.add(device)
             viewAdapter.notifyItemInserted(results.size - 1)
             Log.d("DISCOVERY", "Adding device ${device.address}")
