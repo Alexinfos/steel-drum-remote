@@ -18,7 +18,8 @@ Pour découvrir les appareils Bluetooth à proximité, l'application a besoin de
  - Appareils à proximité : Pour ouvrir une connection Bluetooth
  - Position exacte : Nécessaire pour découvrir les appareils à proximité (voir [Autorisations Bluetooth | Connectivity | Android Developers](https://developer.android.com/develop/connectivity/bluetooth/bt-permissions?hl=fr#declare-android11-or-lower))
 
-L'autorisation de position exacte n'est pas demandée par automatiquement par l'application. Pour la lui accorder, appui long sur l'icone de l'application dans votre lanceur, puis "Informations sur l'appli" > "Autorisations" > "Lieu", sélectionner "Autoriser seulement si l'appli est utilisée" et activer "Position exacte".
+> [!NOTE]
+> L'autorisation de position exacte n'est pas demandée par automatiquement par l'application. Pour la lui accorder, appui long sur l'icone de l'application dans votre lanceur, puis "Informations sur l'appli" > "Autorisations" > "Lieu", sélectionner "Autoriser seulement si l'appli est utilisée" et activer "Position exacte".
 
 ## Installer l'application
 
