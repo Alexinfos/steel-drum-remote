@@ -54,7 +54,7 @@
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:background="@drawable/circle"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorAccent"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

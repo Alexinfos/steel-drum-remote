@@ -2,6 +2,7 @@ package fr.alexisbn.steeldrumremote
 
 import android.bluetooth.BluetoothDevice
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.alexisbn.steeldrumremote.databinding.ActivityDeviceSelectBinding
@@ -21,7 +23,10 @@ class DeviceSelectActivity : AppCompatActivity() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var viewAdapterListener: DeviceListAdapter.Callback
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     private var results = arrayListOf<BluetoothDevice>()
+    private var showUnnamedDevices: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +34,9 @@ class DeviceSelectActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        showUnnamedDevices = sharedPreferences.getBoolean("scan_show_all_devices", false)
 
         viewManager = LinearLayoutManager(this)
 
@@ -55,7 +63,7 @@ class DeviceSelectActivity : AppCompatActivity() {
 
     private fun onDeviceDiscovered(device: BluetoothDevice) {
         Log.d("DISCOVERY", "Found : ${device.name} - ${device.address}")
-        if (results.none { it.address == device.address } && device.name != null) {
+        if (results.none { it.address == device.address } && (showUnnamedDevices || device.name != null)) {
             results.add(device)
             viewAdapter.notifyItemInserted(results.size - 1)
             Log.d("DISCOVERY", "Adding device ${device.address}")

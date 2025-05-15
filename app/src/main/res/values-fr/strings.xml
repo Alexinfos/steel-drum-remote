@@ -8,4 +8,12 @@
     <string name="title_activity_remote">Télécommande</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="settings">Paramètres</string>
+    <string name="preference_show_all_devices">Afficher les appareils Bluetooth sans nom</string>
+    <string name="about">À propos</string>
+    <string name="copyright">Développé par Alexis Brandner et Camille Raynaud</string>
+    <string name="see_on_github">Voir sur GitHub</string>
+    <string name="keyboard">Clavier</string>
+    <string name="play_recording">Jouer une mélodie</string>
+    <string name="play">Jouer</string>
+    <string name="stop">Arrêter</string>
 </resources>

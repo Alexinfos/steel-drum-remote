@@ -41,6 +41,7 @@ class BluetoothService(private val context: Context) {
     fun sendCommand(command: String): Boolean {
         val char = writeCharacteristic ?: return false
         val bytes = command.toByteArray(Charsets.UTF_8)
+        Log.d(TAG, "Sending Command $command")
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val status = bluetoothGatt?.writeCharacteristic(char, bytes, BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT)
             status == BluetoothStatusCodes.SUCCESS
